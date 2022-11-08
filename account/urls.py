@@ -1,8 +1,12 @@
+"""account URL Configuration
+
+The `urlpatterns` list routes URLs to views.
+"""
 from django.urls import path
 
 from .api import RegisterAPI, LoginAPI, UserAPI
 
-app_name = 'user'
+app_name = 'account'
 
 urlpatterns = [
     path("register/", RegisterAPI.as_view(), name="register"),

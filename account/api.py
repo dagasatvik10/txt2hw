@@ -1,14 +1,19 @@
+"""account apis
+
+contains register and login user api
+"""
 from knox.models import AuthToken
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from knox.auth import TokenAuthentication
 from .serializers import LoginSerializer, RegisterSerializer, UserSerializer
 
 
 class RegisterAPI(generics.GenericAPIView):
+    """api to register new user"""
     serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
+        """creates a new user and returns the new user and its auth token"""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -22,9 +27,11 @@ class RegisterAPI(generics.GenericAPIView):
 
 
 class LoginAPI(generics.GenericAPIView):
+    """api to authenticate a user"""
     serializer_class = LoginSerializer
 
     def post(self, request, *args, **kwargs):
+        """returns the authenticated user"""
         serializer = self.get_serializer(data=request.data)
         serializer.is_valid(raise_exception=True)
 
@@ -38,6 +45,7 @@ class LoginAPI(generics.GenericAPIView):
 
 
 class UserAPI(generics.RetrieveAPIView):
+    """api to fetch the logged in user"""
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticated]
 

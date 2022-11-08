@@ -85,7 +85,7 @@ DATABASES = {
         'NAME': 'txt2hw',
         'ENFORCE_SCHEMA': False,
         'CLIENT': {
-            'host': 'mongodb+srv://my_mac_pro_user:pjdUsyVcwHXReWsU@cluster0-pjxkb.mongodb.net/txt2hw?retryWrites=true&w=majority',
+            'host': 'mongodb+srv://my_mac_pro_user:pjdUsyVcwHXReWsU@cluster0-pjxkb.mongodb.net/txt2hw?retryWrites=true&w=majority',  # pylint: disable=line-too-long
         }
     }
 }
