@@ -5,7 +5,16 @@ from rest_framework import exceptions
 from rest_framework.response import Response
 from rest_framework.serializers import as_serializer_error
 from rest_framework.views import exception_handler
-from styleguide_example.core.exceptions import ApplicationError
+
+# from styleguide_example.core.exceptions import ApplicationError
+
+
+class ApplicationError(Exception):
+    def __init__(self, message, extra=None):
+        super().__init__(message)
+
+        self.message = message
+        self.extra = extra or {}
 
 
 def custom_exception_handler(exc, ctx):

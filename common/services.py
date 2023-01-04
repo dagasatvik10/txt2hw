@@ -1,6 +1,6 @@
 from typing import Any, Dict, List, Tuple
 
-from djongo import models
+from django.db import models
 
 from common.types import DjangoModelType
 

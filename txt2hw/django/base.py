@@ -90,19 +90,21 @@ WSGI_APPLICATION = "txt2hw.wsgi.application"
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
 DATABASES = {
-    "default": {
-        "ENGINE": "djongo",
-        "NAME": "txt2hw",
-        "ENFORCE_SCHEMA": False,
-        "CLIENT": {
-            "host": env(
-                "DATABASE_URL",
-                default="mongodb+srv://my_mac_pro_user:pjdUsyVcwHXReWsU@cluster0-pjxkb.mongodb.net/txt2hw?retryWrites=true&w=majority",  # noqa
-            )  # pylint: disable=line-too-long
-        },
-    }
+    "default": env.db("DATABASE_URL", default="postgres:///styleguide_example"),
 }
 DATABASES["default"]["ATOMIC_REQUESTS"] = True
+
+if os.environ.get("GITHUB_WORKFLOW"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "NAME": "github_actions",
+            "USER": "postgres",
+            "PASSWORD": "postgres",
+            "HOST": "127.0.0.1",
+            "PORT": "5432",
+        }
+    }
 
 
 # Password validation
