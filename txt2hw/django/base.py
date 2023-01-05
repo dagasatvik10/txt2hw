@@ -32,12 +32,14 @@ ALLOWED_HOSTS = ["*"]
 
 LOCAL_APPS = [
     "api.apps.ApiConfig",
-    "account.apps.AccountConfig",
+    "users.apps.UserConfig",
 ]
 
 THIRD_PARTY_APPS = [
     "rest_framework",
     "knox",
+    "django_filters",
+    "corsheaders",
 ]
 
 INSTALLED_APPS = [
@@ -125,7 +127,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-# AUTH_USER_MODEL = "users.BaseUser"
+AUTH_USER_MODEL = "users.BaseUser"
 
 
 # Internationalization
