@@ -7,6 +7,10 @@ services:
       - POSTGRES_DB=txt2hw
       - POSTGRES_USER=postgres
       - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
   
   django:
     build:
@@ -22,3 +26,7 @@ services:
     depends_on:
       - db
     restart: on-failure
+
+volumes:
+  db:
+    driver: local
