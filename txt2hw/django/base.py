@@ -32,6 +32,7 @@ ALLOWED_HOSTS = ["*"]
 
 LOCAL_APPS = [
     "api.apps.ApiConfig",
+    "authentication.apps.AuthenticationConfig",
     "users.apps.UserConfig",
 ]
 
@@ -154,13 +155,15 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 REST_FRAMEWORK = {
     "EXCEPTION_HANDLER": "api.exception_handlers.custom_exception_handler",
     "DEFAULT_FILTER_BACKENDS": ("django_filters.rest_framework.DjangoFilterBackend",),
-    "DEFAULT_AUTHENTICATION_CLASSES": ("knox.auth.TokenAuthentication",),
+    "DEFAULT_AUTHENTICATION_CLASSES": ("authentication.auth.TokenAuthentication",),
 }
 
 APP_DOMAIN = env("APP_DOMAIN", default="http://localhost:8000")
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+
+from txt2hw.settings.auth import *  # noqa
 from txt2hw.settings.cors import *  # noqa
 from txt2hw.settings.knox import *  # noqa
 from txt2hw.settings.sessions import *  # noqa
