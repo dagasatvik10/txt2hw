@@ -1,0 +1,33 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15.1
+    environment:
+      - POSTGRES_DB=txt2hw
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - db:/var/lib/postgresql/data
+  
+  django:
+    build:
+      context: .
+      dockerfile: docker/local.Dockerfile
+    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 manage.py runserver 0.0.0.0:8000 --nothreading --noreload"]
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432/txt2hw
+    volumes:
+      - .:/app
+    ports:
+      - "8000:8000"
+      - "5678:5678"
+    depends_on:
+      - db
+    restart: on-failure
+
+volumes:
+  db:
+    driver: local
