@@ -20,6 +20,7 @@ class UserMeAPI(ApiAuthMixin, APIView):
 
 
 class UserJwtLoginApi(KnoxLoginView):
+    authentication_classes = []
     permission_classes = (permissions.AllowAny,)
 
     def post(self, request, *args, **kwargs):
