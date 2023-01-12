@@ -34,6 +34,7 @@ LOCAL_APPS = [
     "api.apps.ApiConfig",
     "authentication.apps.AuthenticationConfig",
     "users.apps.UserConfig",
+    "integrations.apps.IntegrationsConfig",
 ]
 
 THIRD_PARTY_APPS = [
@@ -165,5 +166,6 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 from txt2hw.settings.auth import *  # noqa
 from txt2hw.settings.cors import *  # noqa
+from txt2hw.settings.files_and_storages import *  # noqa
 from txt2hw.settings.knox import *  # noqa
 from txt2hw.settings.sessions import *  # noqa
