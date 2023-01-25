@@ -2,7 +2,6 @@ from utils.tests import faker
 
 
 def mock_s3_generate_presigned_post():
-    print("mock presigned url")
     return {
         "fields": {
             "Content-Type": "image/png",

@@ -49,6 +49,7 @@ class DirectUploadApiTests(TestCase):
         character = Character.objects.get(id=data["id"])
         self.assertEqual(character.value, inputs["value"])
         self.assertEqual(character.original_image_name, inputs["image_name"])
+        self.assertIn(str(ord(inputs["value"])), character.image_name)
 
         # check if character is not valid
         self.assertEqual(character.is_valid, False)
