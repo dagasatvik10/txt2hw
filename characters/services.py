@@ -59,7 +59,7 @@ class CharacterStandardUploadService:
             value=self.value,
             image=self.image_obj,
             original_image_name=image_name,
-            image_name=file_generate_name(image_name),
+            image_name=file_generate_name(image_name, self.value),
             image_type=image_type,
             user=self.user,
             upload_finished_at=timezone.now(),
@@ -78,7 +78,7 @@ class CharacterStandardUploadService:
 
         character.image = self.image_obj
         character.original_image_name = image_name
-        character.image_name = file_generate_name(image_name)
+        character.image_name = file_generate_name(image_name, self.value)
         character.image_type = image_type
         character.value = self.value
         character.user = self.user
@@ -99,7 +99,7 @@ class CharacterDirectUploadService:
         character = Character(
             value=value,
             original_image_name=image_name,
-            image_name=file_generate_name(image_name),
+            image_name=file_generate_name(image_name, value),
             user=self.user,
             image=None,
             image_type=image_type,

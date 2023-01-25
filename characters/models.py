@@ -13,6 +13,7 @@ class Character(BaseModel):
 
     original_image_name = models.TextField()
 
+    # image name format - "files/{user_id}/{character_ascii_code}"
     image_name = models.CharField(max_length=255, unique=True)
     image_type = models.CharField(max_length=255)
 
