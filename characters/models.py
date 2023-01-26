@@ -8,6 +8,9 @@ from users.models import BaseUser
 
 
 class Character(BaseModel):
+    class Meta:
+        constraints = [models.UniqueConstraint(fields=["user", "value"], name="unique_user_value")]
+
     # handwritten image
     image = models.FileField(upload_to=file_generate_upload_path, blank=True, null=True)
 
