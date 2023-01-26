@@ -61,7 +61,7 @@ class CharacterListApi(ApiAuthMixin, APIView):
         filters_serializer = self.FilterSerializer(data=request.query_params)
         filters_serializer.is_valid(raise_exception=True)
 
-        characters = character_list(filters=filters_serializer.validated_data)
+        characters = character_list(filters={**filters_serializer.validated_data, "user": request.user})
 
         return get_paginated_response(
             pagination_class=self.Pagination,

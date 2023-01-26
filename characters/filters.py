@@ -8,7 +8,7 @@ class CharacterFilter(django_filters.FilterSet):
 
     class Meta:
         model = Character
-        fields = ("id", "value", "upload_finished_at")
+        fields = ("id", "value", "upload_finished_at", "user")
 
     @property
     def qs(self):
