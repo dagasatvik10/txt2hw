@@ -123,7 +123,7 @@ class CharacterDirectUploadService:
         return {"id": character.id, **presigned_data}
 
     @transaction.atomic
-    def finish(self, *, character: Character()) -> Character:
+    def finish(self, *, character: Character) -> Character:
         # Potentially, check against user
         character.upload_finished_at = timezone.now()
         character.full_clean()
